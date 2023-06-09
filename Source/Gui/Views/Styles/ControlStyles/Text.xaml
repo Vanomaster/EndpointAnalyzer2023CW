@@ -1,0 +1,45 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="HeaderText" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#6E6893"/>
+        <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
+    </Style>
+    
+    <Style x:Key="HeaderTextlvl1" TargetType="TextBlock" BasedOn="{StaticResource HeaderText}">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="25"/>
+    </Style>
+
+    <Style x:Key="HeaderTextlvl2" TargetType="TextBlock" BasedOn="{StaticResource HeaderText}">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="20"/>
+    </Style>
+
+    <Style x:Key="CardTitleTextBlock" TargetType="TextBlock" BasedOn="{StaticResource HeaderText}">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Margin" Value="0,0,0,10"/>
+    </Style>
+
+    <Style x:Key="CardSubTitleTextBlock" TargetType="TextBlock" BasedOn="{StaticResource HeaderText}">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Margin" Value="0,10"/>
+    </Style>
+    <Style x:Key="ButtonsText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
+        <Setter Property="FontSize" Value="12"/>
+    </Style>
+    <Style x:Key="MessageBoxText" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+    <Style x:Key="PageNumberText" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#6E6893"/>
+        <Setter Property="FontFamily" Value="Microsoft YaHei UI"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Margin" Value="5,0"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+</ResourceDictionary>

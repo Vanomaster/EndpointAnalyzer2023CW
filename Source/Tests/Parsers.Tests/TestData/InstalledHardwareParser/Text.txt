@@ -1,0 +1,2 @@
+May 11 04:02:14 EA-ALC1 kernel: [    1.693397] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 5.15
+May 12 06:04:12 EA-ALC1 kernel: [    1.693397] usb usb1: New USB device found, idVendor=1d0x, idProduct=0002, bcdDevice= 5.15

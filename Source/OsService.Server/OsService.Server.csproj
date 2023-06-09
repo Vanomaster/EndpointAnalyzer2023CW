@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Google.Protobuf" Version="3.23.2" />
+        <PackageReference Include="Grpc.AspNetCore" Version="2.53.0" />
+        <PackageReference Include="Grpc.Net.Client" Version="2.53.0" />
+        <PackageReference Include="Grpc.Tools" Version="2.54.0">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="7.0.0" />
+        <PackageReference Include="NLog" Version="5.2.0" />
+        <PackageReference Include="NLog.Extensions.Logging" Version="5.3.0" />
+        <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Protobuf Include="../Protocols/OsServiceFromServer/*/*.proto" Link="Protocols/123.proto" GrpcServices="Server" AdditionalImportDirs="../Protocols" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Common\Common.csproj" />
+      <ProjectReference Include="..\OsService.Client\OsService.Client.csproj" />
+      <ProjectReference Include="..\OsService.Commands\OsService.Commands.csproj" />
+      <ProjectReference Include="..\OsService.Services\OsService.Services.csproj" />
+      <ProjectReference Include="..\OsService.Watchers\OsService.Watchers.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\Common\nlog.config">
+            <Link>nlog.config</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,1 @@
+[{"HardwareId":"1d6b:0002"},{"HardwareId":"1d0x:0002"}]

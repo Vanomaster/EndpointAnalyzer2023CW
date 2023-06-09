@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "UiClient/Common/service.proto";
+
+option csharp_namespace = "AnalysisService";
+
+service Analysis {
+  rpc Analyze (AnalyzeRequest) returns (CommandResponse);
+}
+
+message AnalyzeRequest {
+  ProtoAnalysisModel analysis_model = 1;
+}
+
+//message AnalyzeResponse {
+//  string notice = 1;
+//}
+
+message ProtoAnalysisModel {
+  string pc_ip = 1;
+  string benchmark_name = 2;
+  repeated string analyzer_names = 3;
+}

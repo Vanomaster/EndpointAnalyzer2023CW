@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+import "UiClient/Common/service.proto";
+
+option csharp_namespace = "ConfigurationRecommendationsService";
+
+service ConfigurationRecommendations {
+  rpc Get (GetRequest) returns (GetResponse);
+  rpc GetExist (Request) returns (GetResponse);
+  rpc Add (Request) returns (CommandResponse);
+  rpc Update (Request) returns (CommandResponse);
+  rpc Remove (Request) returns (CommandResponse);
+}
+
+
+
+message GetRequest {
+  PageModel page_model = 1;
+}
+
+message GetAllNamesRequest {}
+
+message Request {
+  repeated ProtoConfigurationRecommendation recommendations = 1;
+}
+
+
+
+message GetResponse {
+  oneof QueryResult {
+    ConfigurationRecommendationsData data = 1;
+    google.protobuf.StringValue error_message = 2;
+  }
+}
+
+
+
+message ConfigurationRecommendationsData {
+  repeated ProtoConfigurationRecommendation recommendations = 1;
+}
+
+message Data {
+  repeated string names = 1;
+}
+
+
+
+message ProtoConfigurationRecommendation {
+  bytes id = 1;
+  string name = 2;
+  string verification_command = 3;
+  string verification_result = 4;
+  ProtoConfiguration configuration = 5;
+  google.protobuf.BytesValue parent_id = 6;
+}
+
+message ProtoConfiguration {
+  bytes id = 1;
+  string name = 2;
+  google.protobuf.StringValue description = 3;
+}

@@ -1,0 +1,9 @@
+﻿{
+  "ConnectionStrings": {
+    "Main": "Host=localhost; Port=5432; Database=endpoint_analyzer2023; Username=postgres; Password=123",
+    "Schedule": "Host=localhost; Port=5432; Database=schedule; Username=postgres; Password=123"
+  },
+  "DbOptions": {
+    "IsNeedToRecreate": "0"
+  }
+}

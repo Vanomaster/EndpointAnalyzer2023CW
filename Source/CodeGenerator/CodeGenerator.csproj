@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>11</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Google.Protobuf" Version="3.23.2" />
+        <PackageReference Include="Mapster" Version="7.4.0-pre06" />
+        <PackageReference Include="Mapster.Core" Version="1.2.1-pre04" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Client\Client.csproj" />
+      <ProjectReference Include="..\Dal\Dal.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Mapster\Extensions\Generated" />
+      <Folder Include="Mapster\MapServices\Generated" />
+    </ItemGroup>
+
+    <Target Name="Mapster" AfterTargets="AfterBuild">
+        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool restore" />
+        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet mapster mapper -a &quot;$(TargetDir)$(ProjectName).dll&quot; -o ./Mapster/MapServices/Generated -p 1" />
+        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet mapster extension -a &quot;$(TargetDir)$(ProjectName).dll&quot; -o ./Mapster/Extensions/Generated -p 1" />
+    </Target>
+
+    <ItemGroup>
+        <Generated Include="**\*.g.cs" />
+    </ItemGroup>
+    <Target Name="CleanGenerated">
+        <Delete Files="@(Generated)" />
+    </Target>
+
+</Project>

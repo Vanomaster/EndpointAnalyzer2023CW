@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Google.Protobuf" Version="3.23.2" />
+      <PackageReference Include="Grpc.Net.Client" Version="2.53.0" />
+      <PackageReference Include="Grpc.Tools" Version="2.54.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+      <PackageReference Include="NLog" Version="5.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Protobuf Include="../Protocols/UiClient/*/*.proto" Link="Protocols/123.proto" GrpcServices="Client" AdditionalImportDirs="../Protocols" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CleanModels\CleanModels.csproj" />
+      <ProjectReference Include="..\Common\Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Configuration\config.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <!--<ItemGroup>
+      <Reference Include="Microsoft.Extensions.Configuration">
+        <HintPath>..\..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\7.0.5\Microsoft.Extensions.Configuration.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
+        <HintPath>..\..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\7.0.5\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.Extensions.Configuration.Json">
+        <HintPath>..\..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\7.0.5\Microsoft.Extensions.Configuration.Json.dll</HintPath>
+      </Reference>
+    </ItemGroup>-->
+
+</Project>

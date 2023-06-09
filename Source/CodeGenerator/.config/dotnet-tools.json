@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "mapster.tool": {
+      "version": "8.4.0-pre06",
+      "commands": [
+        "dotnet-mapster"
+      ]
+    }
+  }
+}

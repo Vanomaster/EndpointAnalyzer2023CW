@@ -1,0 +1,10 @@
+Initiating SYN Stealth Scan
+Scanning 511 hosts [1 port/host]
+rate:  3.95-kpps, 100.00% done, waiting 0-secs, found=0
+Discovered open port 12124/tcp on 10.1.0.2                                     
+rate:  3.95-kpps, 100.00% done, waiting 0-secs, found=1       
+rate:  0.00-kpps, 100.00% done, waiting 10-secs, found=1       
+rate:  0.00-kpps, 100.00% done, waiting 10-secs, found=1 
+rate:  0.00-kpps, 100.00% done, waiting 10-secs, found=1 
+rate:  0.00-kpps, 100.00% done, waiting 10-secs, found=1 
+rate:  0.00-kpps, 100.00% done, waiting 10-secs, found=1 

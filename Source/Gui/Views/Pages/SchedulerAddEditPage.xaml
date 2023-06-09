@@ -1,0 +1,152 @@
+﻿<Page x:Class="Gui.Views.SchedulerAddEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Gui.Views"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      Style="{StaticResource Page_Style}"
+      Title="SchedulerAddEditPage">
+
+    <Grid Margin="20,0,20,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Style="{StaticResource FramedHeader}" Grid.Row="0">
+            <TextBlock
+                    Text="ПАРАМЕТРЫ ПРОВЕРКИ">
+            </TextBlock>
+
+        </Border>
+
+        <Border Style="{StaticResource FramedContent}" Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Margin="20,50,20,20" Grid.Column="0" >
+                    
+                    <StackPanel  DockPanel.Dock="Top">
+                        <TextBlock Style="{StaticResource HeaderTextlvl2}">
+                            Название
+                        </TextBlock>
+                        <Border  Margin="0,20" Style="{StaticResource EditableTextBox}" HorizontalAlignment="Left">
+                            <TextBox 
+                                Text="{Binding RecordName, Mode=TwoWay}"
+                                materialDesign:HintAssist.Hint = "Введите название">
+                            </TextBox>
+                        </Border>
+                    </StackPanel>
+                    
+                    <TextBlock Style="{StaticResource HeaderTextlvl2}">
+                                    Выберите ПК для анализа
+                    </TextBlock>
+
+                    <ComboBox Margin="0,20" Width="300"
+                                      HorizontalAlignment="Left"
+                                      ItemsSource="{Binding PcNameList}"
+                                      IsEditable="True"
+                                      SelectedItem="{Binding SelectedPcName}"
+                                      Style="{StaticResource CustomCombobox}"/>
+
+                    <TextBlock Style="{StaticResource HeaderTextlvl2}">
+                                    Выберите шаблон
+                    </TextBlock>
+                    <ComboBox Margin="0,20" Width="300"
+                                      HorizontalAlignment="Left"
+                                      ItemsSource="{Binding BenchmarkNameList}"
+                                      IsEditable="True"
+                                      SelectedItem="{Binding SelectedBenchmarkName}"
+                                      Style="{StaticResource CustomCombobox}"/>
+
+                    <TextBlock Style="{StaticResource HeaderTextlvl2}">
+                                    Выберите проверки
+                    </TextBlock>
+
+                    <ListBox Margin="0,20"
+                        Style="{StaticResource MaterialDesignFilterChipPrimaryListBox}" Cursor="Hand">
+                        <ListBoxItem
+                            Content="Анализ конфигураций" 
+                            IsSelected="{Binding IsConfigurationSelected}"/>
+                        <ListBoxItem
+                            Content="Анализ ПО"
+                            IsSelected="{Binding IsSoftwareSelected}"/>
+                        <ListBoxItem
+                            Content="Анализ устройств" 
+                            IsSelected="{Binding IsHardwareSelected}"/>
+                        <ListBoxItem
+                            Content="Анализ обновлений ПО"
+                            IsSelected="{Binding IsSoftwareUpgradeSelected}"/>
+                    </ListBox>
+
+                </StackPanel>
+
+                <StackPanel Margin="20,50,20,20" Grid.Column="1" >
+
+                    
+                    <TextBlock Style="{StaticResource HeaderTextlvl2}" Margin="0,0,0,20">
+                                    Начать с
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <DatePicker
+                            Text="{Binding StartDate, StringFormat={}{0:yyyy-MM-dd}}"
+                              Name="LocaleDatePicker"
+                              Width="120"
+                              materialDesign:HintAssist.Hint="Locale Date" />
+                        <materialDesign:TimePicker Margin="20,0"
+                            Text="{Binding StartTime, StringFormat={}{0:HH:mm:ss}}"
+                            Width="100"
+                              Is24Hours="True" />
+                    </StackPanel>
+
+                    <TextBlock Style="{StaticResource HeaderTextlvl2}" Margin="0,20">
+                                    Повторять каждые
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal" Height="40">
+                        <Border Style="{StaticResource EditableTextBox}" Width="100" Margin="0,0,20,0">
+                            <TextBox Text="{Binding MonthDayInterval}"></TextBox>
+                        </Border >
+                        <TextBlock Style="{StaticResource HeaderTextlvl2}" FontSize="16" >
+                                    день
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="40">
+                        <Border Style="{StaticResource EditableTextBox}" Width="100" Margin="0,0,20,0">
+                            <TextBox Text="{Binding HourInterval}"></TextBox>
+                        </Border >
+                        <TextBlock Style="{StaticResource HeaderTextlvl2}" FontSize="16" >
+                                    час
+                        </TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="40">
+                        <Border Style="{StaticResource EditableTextBox}" Width="100" Margin="0,0,20,0">
+                            <TextBox Text="{Binding MinuteInterval}"></TextBox>
+                        </Border >
+                        <TextBlock Style="{StaticResource HeaderTextlvl2}" FontSize="16" >
+                                    минут
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel>
+                
+                
+
+                <Button x:Name="ButtonCreateTask" Grid.ColumnSpan="2"
+                        ToolTip="Создать задачу"
+                        Visibility="{Binding IsVisButtonCreateTask}"
+                        Style="{StaticResource CardIconButton}"
+                        Command="{Binding CreateTaskCommand}"
+                        Width="150" Margin="440,455,440,0">
+                    <TextBlock Style="{StaticResource ButtonsText}">
+                                            Создать задачу
+                    </TextBlock>
+                </Button>
+            </Grid>
+
+        </Border>
+    </Grid>
+</Page>

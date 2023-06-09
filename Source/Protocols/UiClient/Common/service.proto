@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "CommonService";
+
+message CommandResponse {
+  google.protobuf.StringValue error_message = 1;
+}
+
+message PageModel{
+  int32 page_number = 1;
+  google.protobuf.StringValue search_phrase = 2;
+  google.protobuf.StringValue sorting_property_name = 3;
+  google.protobuf.BoolValue sorting_order_is_ascending = 4;
+  google.protobuf.StringValue parent_name = 5;
+}

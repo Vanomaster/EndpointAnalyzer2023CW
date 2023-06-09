@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+import "UiClient/Common/service.proto";
+
+option csharp_namespace = "ConfigurationRecommendationsBenchmarkService";
+
+service ConfigurationRecommendationsBenchmark {
+  rpc Get (GetOneRequest) returns (GetConfigurationRecommendationsBenchmarkResponse);
+  rpc GetAll (GetAllNamesRequest) returns (GetAllConfigurationRecommendationsBenchmarkNamesResponse);
+  rpc Add (ConfigurationRecommendationsBenchmarkRequest) returns (CommandResponse);
+  rpc Update (ConfigurationRecommendationsBenchmarkRequest) returns (CommandResponse);
+  rpc Remove (ConfigurationRecommendationsBenchmarkRequest) returns (CommandResponse);
+}
+
+
+
+message GetOneRequest {
+  string parent_name = 1;
+}
+
+message GetAllNamesRequest {}
+
+message ConfigurationRecommendationsBenchmarkRequest {
+  ProtoConfigurationRecommendationsBenchmark benchmark = 1;
+}
+
+
+
+message GetConfigurationRecommendationsBenchmarkResponse {
+  oneof QueryResult {
+    ConfigurationRecommendationsBenchmarkData data = 1;
+    google.protobuf.StringValue error_message = 2;
+  }
+}
+
+message GetAllConfigurationRecommendationsBenchmarkNamesResponse {
+  oneof QueryResult {
+    Data data = 1;
+    google.protobuf.StringValue error_message = 2;
+  }
+}
+
+
+
+message ConfigurationRecommendationsBenchmarkData {
+  ProtoConfigurationRecommendationsBenchmark benchmark = 1;
+}
+
+message Data {
+  repeated string names = 1;
+}
+
+
+
+message ProtoConfigurationRecommendationsBenchmark {
+  bytes id = 1;
+  string name = 2;
+  google.protobuf.StringValue description = 3;
+  google.protobuf.BytesValue parent_id = 4;
+}

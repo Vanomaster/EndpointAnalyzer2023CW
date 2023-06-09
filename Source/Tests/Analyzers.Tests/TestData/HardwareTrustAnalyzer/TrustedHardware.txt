@@ -1,0 +1,4 @@
+[{"Id":"00000000-0000-0000-0000-000000000000",
+"Name":"Trusted USB 1",
+"HardwareId":"1d6b:0002",
+"TrustedHardwareBenchmarks":[]}]

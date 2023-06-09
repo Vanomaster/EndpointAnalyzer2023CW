@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "OsInfoService";
+
+service OsInfo {
+  rpc GetConfiguration (GetConfigurationRequest) returns (GetConfigurationResponse);
+  rpc GetInstalledSoftware (GetRequest) returns (GetResponse);
+  rpc GetUpgradableSoftware (GetRequest) returns (GetResponse);
+  rpc GetUsbHardware (GetRequest) returns (GetResponse);
+  rpc GetConnectedPciHardware (GetRequest) returns (GetResponse);
+  rpc GetHostName (GetRequest) returns (GetResponse);
+}
+
+message GetConfigurationRequest {
+  repeated string verification_commands = 1;
+}
+
+message GetConfigurationResponse {
+  oneof QueryResult {
+    ConfigurationData data = 1;
+    google.protobuf.StringValue error_message = 2;
+  }
+}
+
+message ConfigurationData {
+  repeated ConfigurationVerification configuration_verifications = 1;
+}
+
+message ConfigurationVerification {
+  string verification_command = 1;
+  string verification_result = 2;
+}
+
+message GetRequest {}
+
+message GetResponse {
+  oneof QueryResult {
+    Data data = 1;
+    google.protobuf.StringValue error_message = 2;
+  }
+}
+
+message Data {
+  string data = 1;
+}

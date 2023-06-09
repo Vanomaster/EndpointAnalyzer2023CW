@@ -1,0 +1,5 @@
+﻿{
+  "ConnectionStrings": {
+    "ServerAddress": "http://10.1.0.1:12123"
+  }
+}

@@ -1,0 +1,72 @@
+﻿<Page x:Class="Gui.Views.BenchmarkCreateEditConfigurationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Gui.Views"
+      mc:Ignorable="d" 
+      Style="{StaticResource BasePageStyle}"
+      Title="BenchmarkCreateEditConfigurationPage">
+
+    <Grid>
+        <DataGrid
+            x:Name="ConfigurationGrid"
+            Panel.ZIndex="1"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding ItemsToDisplay}"
+            Cursor="Hand"
+            Style="{StaticResource CustomDataGrid_Style1}">
+            <DataGrid.RowHeight>40</DataGrid.RowHeight>
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn 
+                        Header="Название" 
+                        Binding="{Binding Name}" 
+                        Width="*"/>
+                <DataGridTextColumn 
+                        Header="Команда" 
+                        Binding="{Binding  VerificationCommand}" 
+                        Width="*"/>
+                <DataGridTextColumn 
+                        Header="Результат" 
+                        Binding="{Binding  VerificationResult}" 
+                        Width="*"/>
+                <DataGridTemplateColumn  Width="60">
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader" BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
+                    <DataGridTemplateColumn.Header>
+                        <materialDesign:PackIcon Kind="InfoOutline" Width="20" Height="20" Foreground="#FF8B83BA"/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="Padding" Value="4"/>
+                        </Style>
+                    </DataGridTemplateColumn.CellStyle>
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate >
+                            <Button
+                                Command="{Binding DataContext.GetInfoCommand, RelativeSource={RelativeSource AncestorType={x:Type local:BenchmarkCreateEditConfigurationPage}}}"
+                                CommandParameter="{Binding}"
+                                ToolTip="Подробнее">
+                                <materialDesign:PackIcon Kind="InfoOutline" Width="20" Height="20" Foreground="#FF8B83BA"/>
+                                <Button.Style>
+                                    <Style TargetType="Button" BasedOn="{StaticResource IconToolButton}">
+                                        <Setter Property="Padding" Value="0"/>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+    </Grid>
+</Page>

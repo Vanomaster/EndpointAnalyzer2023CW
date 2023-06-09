@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "NetworkService";
+
+service Network {
+  rpc GetHostsWithEaService (GetHostsWithEaServiceRequest) returns (GetHostsWithEaServiceResponse);
+}
+
+message GetHostsWithEaServiceRequest {}
+
+message GetHostsWithEaServiceResponse {
+  oneof QueryResult {
+    Data data = 1;
+    google.protobuf.StringValue error_message = 2;
+  }
+}
+
+message Data {
+  repeated ProtoHost hosts = 1;
+}
+
+message ProtoHost {
+  string ip = 1;
+  string name = 2;
+}

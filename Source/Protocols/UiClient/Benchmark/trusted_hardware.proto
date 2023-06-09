@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+import "UiClient/Common/service.proto";
+
+option csharp_namespace = "TrustedHardwareService";
+
+service TrustedHardware {
+  rpc Get (GetRequest) returns (GetResponse);
+  rpc GetExist (Request) returns (GetResponse);
+  rpc Add (Request) returns (CommandResponse);
+  rpc Update (Request) returns (CommandResponse);
+  rpc Remove (Request) returns (CommandResponse);
+}
+
+
+
+message GetRequest {
+  PageModel page_model = 1;
+}
+
+message GetAllNamesRequest {}
+
+message Request {
+  repeated ProtoTrustedHardware hardware = 1;
+}
+
+
+
+message GetResponse {
+  oneof QueryResult {
+    TrustedHardwareData data = 1;
+    google.protobuf.StringValue error_message = 2;
+  }
+}
+
+
+
+message TrustedHardwareData {
+  repeated ProtoTrustedHardware recommendations = 1;
+}
+
+message Data {
+  repeated string names = 1;
+}
+
+
+
+message ProtoTrustedHardware {
+  bytes id = 1;
+  string name = 2;
+  string hardware_id = 3;
+  google.protobuf.BytesValue parent_id = 4;
+}

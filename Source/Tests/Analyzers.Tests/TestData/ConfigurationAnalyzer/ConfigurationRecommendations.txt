@@ -1,0 +1,8 @@
+[{"Id":"00000000-0000-0000-0000-000000000000",
+"Name":"Mounting of freevxfs filesystems is disabled",
+"ConfigurationId":"00000000-0000-0000-0000-000000000000",
+"VerificationCommand":"modprobe -n -v freevxfs #|# lsmod | grep freevxfs",
+"VerificationResult":"install /bin/true #|# ",
+"Configuration":{"Id":"00000000-0000-0000-0000-000000000000","Name":"Mounting of freevxfs filesystems",
+"Description":"The freevxfs filesystem type is a free version of the Veritas type filesystem. This is the primary filesystem type for HP-UX operating systems"},
+"ConfigurationRecommendationsBenchmarks":[]}]

@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+import "UiClient/Common/service.proto";
+
+option csharp_namespace = "BenchmarkService";
+
+service Benchmark {
+  rpc Get (GetRequest) returns (GetResponse);
+  rpc GetAllNames (GetAllNamesRequest) returns (GetAllNamesResponse);
+  rpc Add (AddOrUpdateRequest) returns (CommandResponse);
+  rpc Update (AddOrUpdateRequest) returns (CommandResponse);
+  rpc Remove (RemoveRequest) returns (CommandResponse);
+}
+
+
+
+message GetRequest {
+  PageModel page_model = 1;
+}
+
+message GetAllNamesRequest {}
+
+message AddOrUpdateRequest {
+  ProtoBenchmark benchmark = 1;
+}
+
+message RemoveRequest {
+  repeated ProtoBenchmark benchmarks = 1;
+}
+
+
+
+message GetResponse {
+  oneof QueryResult {
+    ProtoBenchmarkData data = 1;
+    google.protobuf.StringValue error_message = 2;
+  }
+}
+
+message GetAllNamesResponse {
+  oneof QueryResult {
+    Data data = 1;
+    google.protobuf.StringValue error_message = 2;
+  }
+}
+
+
+message ProtoBenchmarkData {
+  repeated ProtoBenchmark benchmarks = 1;
+}
+
+message Data {
+  repeated string names = 1;
+}
+
+
+
+message ProtoBenchmark {
+  bytes id = 1;
+  string name = 2;
+  google.protobuf.StringValue description = 3;
+  int32 pc_quantity = 4;
+}

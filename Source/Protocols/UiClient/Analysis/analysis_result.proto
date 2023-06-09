@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+import "UiClient/Common/service.proto";
+
+option csharp_namespace = "AnalysisResultService";
+
+service AnalysisResult {
+  rpc Get (GetRequest) returns (GetResponse);
+}
+
+message GetRequest {
+  PageModel page_model = 1;
+}
+
+message GetResponse {
+  oneof QueryResult {
+    Data data = 1;
+    google.protobuf.StringValue error_message = 2;
+  }
+}
+
+message Data {
+  repeated ProtoAnalysisResult analysis_results = 1;
+}
+
+message ProtoAnalysisResult {
+  bytes id = 1;
+  string pc_name = 2;
+  string benchmark_name = 3;
+  string analyzer_name = 4;
+  bytes text = 5;
+  google.protobuf.Timestamp date_time = 6;
+}

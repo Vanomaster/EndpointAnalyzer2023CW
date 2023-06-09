@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+import "UiClient/Common/service.proto";
+
+option csharp_namespace = "ScheduleService";
+
+service Schedule {
+  rpc Get (GetRequest) returns (GetResponse);
+  rpc AddOrUpdate (AddOrUpdateRequest) returns (CommandResponse);
+  rpc Run (RunRequest) returns (CommandResponse);
+  rpc Remove (RemoveRequest) returns (CommandResponse);
+}
+
+
+
+message GetRequest {
+  PageModel page_model = 1;
+}
+
+message AddOrUpdateRequest {
+  ProtoAnalysisScheduleRecord analysis_schedule_record = 1;
+}
+
+message RunRequest {
+  string name = 1;
+}
+
+message RemoveRequest {
+  repeated ProtoAnalysisScheduleRecord analysis_schedule_records = 1;
+}
+
+
+
+message GetResponse {
+  oneof QueryResult {
+    Data data = 1;
+    google.protobuf.StringValue error_message = 2;
+  }
+}
+
+
+
+message Data {
+  repeated ProtoAnalysisScheduleRecord analysis_schedule_records = 1;
+}
+
+
+
+message ProtoAnalysisScheduleRecord {
+  bytes id = 1;
+  string name = 2;
+  oneof Host {
+    string pc_ip = 3;
+    ProtoHost host = 8;
+  }
+  string benchmark_name = 4;
+  repeated string analyzer_names = 5;
+  string recurrence = 6;
+  bool enabled = 7;
+}
+
+message ProtoHost {
+  string ip = 1;
+  string name = 2;
+}

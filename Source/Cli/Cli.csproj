@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Analyzers\Analyzers.csproj" />
+      <ProjectReference Include="..\OsService.Commands\OsService.Commands.csproj" />
+      <ProjectReference Include="..\OsService.Queries\OsService.Queries.csproj" />
+      <ProjectReference Include="..\Client\Client.csproj" />
+      <ProjectReference Include="..\Client.Services\Client.Services.csproj" />
+      <ProjectReference Include="..\Common\Common.csproj" />
+      <ProjectReference Include="..\Parsers\Parsers.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+      <PackageReference Include="NLog" Version="5.1.5" />
+      <PackageReference Include="NLog.Extensions.Logging" Version="5.2.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="..\Common\nlog.config">
+        <Link>nlog.config</Link>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>

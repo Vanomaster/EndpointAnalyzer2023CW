@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option csharp_namespace = "TestService";
+
+service Test {
+  rpc Test (TestRequest) returns (TestResponse);
+}
+
+message TestRequest {
+  repeated string ids = 1;
+}
+
+message TestResponse {
+  repeated string ids = 1;
+}

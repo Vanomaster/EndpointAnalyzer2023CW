@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+import "UiClient/Common/service.proto";
+
+option csharp_namespace = "TrustedHardwareBenchmarkService";
+
+service TrustedHardwareBenchmark {
+  rpc Get (GetOneRequest) returns (GetTrustedHardwareBenchmarkResponse);
+  rpc GetAll (GetAllNamesRequest) returns (GetAllTrustedHardwareBenchmarkNamesResponse);
+  rpc Add (TrustedHardwareBenchmarkRequest) returns (CommandResponse);
+  rpc Update (TrustedHardwareBenchmarkRequest) returns (CommandResponse);
+  rpc Remove (TrustedHardwareBenchmarkRequest) returns (CommandResponse);
+}
+
+
+
+message GetOneRequest {
+  string parent_name = 1;
+}
+
+message GetAllNamesRequest {}
+
+message TrustedHardwareBenchmarkRequest {
+  ProtoTrustedHardwareBenchmark benchmark = 1;
+}
+
+
+
+message GetTrustedHardwareBenchmarkResponse {
+  oneof QueryResult {
+    TrustedHardwareBenchmarkData data = 1;
+    google.protobuf.StringValue error_message = 2;
+  }
+}
+
+message GetAllTrustedHardwareBenchmarkNamesResponse {
+  oneof QueryResult {
+    Data data = 1;
+    google.protobuf.StringValue error_message = 2;
+  }
+}
+
+
+
+message TrustedHardwareBenchmarkData {
+  ProtoTrustedHardwareBenchmark benchmark = 1;
+}
+
+message Data {
+  repeated string names = 1;
+}
+
+
+
+message ProtoTrustedHardwareBenchmark {
+  bytes id = 1;
+  string name = 2;
+  google.protobuf.StringValue description = 3;
+  google.protobuf.BytesValue parent_id = 4;
+}
